@@ -1,0 +1,11 @@
+selenium
+pandas
+numpy
+openpyxl
+nltk
+matplotlib
+seaborn
+plotly
+dash
+wordcloud
+reportlab
