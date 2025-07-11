@@ -43,7 +43,7 @@ This project automates the collection, processing, and analysis of product data 
 4. **Ensure directory structure**:
    Create the following directories if they don't exist:
    ```bash
-   mkdir -p project/data project/logs project/reports project/tests
+   mkdir -p data logs reports tests
    ```
 
 5. **Configure settings**:
@@ -63,14 +63,14 @@ This project automates the collection, processing, and analysis of product data 
 2. **What happens**:
    - The script launches a headless Chrome browser.
    - Navigates to Best Buy, searches for "Laptops", and applies filters for each brand.
-   - Extracts product data (title, price, rating, review count) and saves it as JSON in `project/data`.
-   - Runs analysis (via `analysis.py`) to process data and generate reports in `project/reports`.
-   - Logs are saved in `project/logs/automation.log`, with screenshots for errors or filtered views.
+   - Extracts product data (title, price, rating, review count) and saves it as JSON in `data`.
+   - Runs analysis (via `analysis.py`) to process data and generate reports in `reports`.
+   - Logs are saved in `logs/automation.log`, with screenshots for errors or filtered views.
 
 ## Output
-- **Data**: JSON files (`<brand>_laptops.json`) in `project/data`.
-- **Logs**: `automation.log` and screenshots in `project/logs`.
-- **Reports**: Analysis outputs (e.g., Excel files, visualizations) in `project/reports`.
+- **Data**: JSON files (`<brand>_laptops.json`) in `data`.
+- **Logs**: `automation.log` and screenshots in `logs`.
+- **Reports**: Analysis outputs (e.g., Excel files, visualizations) in `reports`.
 
 ## Notes
 - The script respects Best Buy's `robots.txt` by implementing delays between requests.
@@ -86,10 +86,14 @@ This project automates the collection, processing, and analysis of product data 
 - **Dependencies**: Verify Python 3.11 and re-run `pip install -r requirements.txt`.
 
 ## Future Enhancements
-- Implement unit tests in `/tests`.
-- Add multi-threading for faster data collection.
-- Develop a REST API to query collected data.
-- Support additional e-commerce platforms.
+1. Add email notification system for long-running processes
+2. Create a simple REST API to query the collected data
+3. Implement caching mechanism for improved performance
+4. Add support for multiple e-commerce platforms
+
+### Completed Bonus Challenges
+1. Implemented multi-threading for faster data collection
+
 
 ## Evaluation Criteria
 This project addresses:
