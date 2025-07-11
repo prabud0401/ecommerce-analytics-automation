@@ -18,6 +18,11 @@ REPORTS_DIR = "reports"
 # Consolidated output file path
 OUTPUT_FILE_PATH = f"{DATA_DIR}/all_laptops.json"
 
+# --- Caching Settings ---
+CACHE_ENABLED = True
+CACHE_EXPIRATION_HOURS = 24 # Cache is valid for 24 hours
+CACHE_DIR = f"{DATA_DIR}/cache"
+
 # --- WebDriver Settings ---
 # Set to False to see the browser in action for debugging
-HEADLESS_MODE = False
+HEADLESS_MODE = True

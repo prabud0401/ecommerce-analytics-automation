@@ -4,6 +4,8 @@ import logging
 import time
 import json
 import re
+import os
+from datetime import datetime, timedelta
 import concurrent.futures
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -24,6 +26,19 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
+
+def is_cache_valid(cache_path):
+    """Checks if a cache file exists and is not expired."""
+    if not config.CACHE_ENABLED or not os.path.exists(cache_path):
+        return False
+    
+    file_mod_time = datetime.fromtimestamp(os.path.getmtime(cache_path))
+    if datetime.now() - file_mod_time > timedelta(hours=config.CACHE_EXPIRATION_HOURS):
+        logging.info(f"Cache file {cache_path} has expired.")
+        return False
+    
+    logging.info(f"Valid cache found for {cache_path}.")
+    return True
 
 def initialize_driver():
     """Initializes and returns a Selenium WebDriver instance."""
@@ -163,6 +178,11 @@ def scrape_brand_data(brand):
         if navigate_and_search(driver):
             if apply_filters(driver, brand):
                 brand_products = extract_product_data_for_thread(driver, brand)
+                # Save to cache on successful scrape
+                cache_path = os.path.join(config.CACHE_DIR, f"cache_{brand.lower()}.json")
+                with open(cache_path, 'w') as f:
+                    json.dump(brand_products, f, indent=4)
+                logging.info(f"Saved data for '{brand}' to cache.")
     except Exception as e:
         logging.error(f"An error occurred in the thread for brand '{brand}': {e}")
     finally:
@@ -172,23 +192,39 @@ def scrape_brand_data(brand):
     return brand_products
 
 def main():
-    """Main function to orchestrate the automation using a thread pool."""
+    """Main function to orchestrate the automation using caching and a thread pool."""
     all_products = []
-    
-    # Use a ThreadPoolExecutor to run scraping for each brand in parallel
-    with concurrent.futures.ThreadPoolExecutor(max_workers=len(config.FILTER_BRANDS)) as executor:
-        # Map the scrape_brand_data function to each brand in the config
-        future_to_brand = {executor.submit(scrape_brand_data, brand): brand for brand in config.FILTER_BRANDS}
-        
-        for future in concurrent.futures.as_completed(future_to_brand):
-            brand = future_to_brand[future]
-            try:
-                data = future.result()
-                if data:
-                    all_products.extend(data)
-                    logging.info(f"Successfully collected {len(data)} products for brand '{brand}'.")
-            except Exception as exc:
-                logging.error(f"Brand '{brand}' generated an exception: {exc}")
+    brands_to_scrape = []
+
+    # Create cache directory if it doesn't exist
+    if not os.path.exists(config.CACHE_DIR):
+        os.makedirs(config.CACHE_DIR)
+
+    # --- Caching Check ---
+    for brand in config.FILTER_BRANDS:
+        cache_path = os.path.join(config.CACHE_DIR, f"cache_{brand.lower()}.json")
+        if is_cache_valid(cache_path):
+            with open(cache_path, 'r') as f:
+                cached_data = json.load(f)
+                all_products.extend(cached_data)
+                logging.info(f"Loaded {len(cached_data)} products for '{brand}' from cache.")
+        else:
+            brands_to_scrape.append(brand)
+
+    # --- Scraping Phase (only for non-cached brands) ---
+    if brands_to_scrape:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=len(brands_to_scrape)) as executor:
+            future_to_brand = {executor.submit(scrape_brand_data, brand): brand for brand in brands_to_scrape}
+            
+            for future in concurrent.futures.as_completed(future_to_brand):
+                brand = future_to_brand[future]
+                try:
+                    data = future.result()
+                    if data:
+                        all_products.extend(data)
+                        logging.info(f"Successfully collected {len(data)} products for brand '{brand}'.")
+                except Exception as exc:
+                    logging.error(f"Brand '{brand}' generated an exception: {exc}")
 
     # --- Save Consolidated Data ---
     if all_products:
@@ -196,7 +232,7 @@ def main():
             json.dump(all_products, f, indent=4)
         logging.info(f"Successfully saved a total of {len(all_products)} products to {config.OUTPUT_FILE_PATH}")
     else:
-        logging.warning("No products were scraped across all brands.")
+        logging.warning("No products were scraped or found in cache.")
 
     # --- Analysis Phase ---
     analysis.run_analysis()
