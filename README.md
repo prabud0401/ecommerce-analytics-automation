@@ -85,14 +85,14 @@ This project automates the collection, processing, and analysis of product data 
 - **Rate limiting**: Increase delays in `main.py` (e.g., `time.sleep`) if blocked.
 - **Dependencies**: Verify Python 3.11 and re-run `pip install -r requirements.txt`.
 
-## Future Enhancements
-2. Create a simple REST API to query the collected data
-3. Add support for multiple e-commerce platforms
-
 ### Completed Bonus Challenges
 1. Implemented email notification system for long-running processes
 2. Implemented multi-threading for faster data collection
 3. Implemented caching mechanism for improved performance
+4. Created a simple REST API to query the collected data
+
+## Future Enhancements
+1. Add support for multiple e-commerce platforms
 
 ## Evaluation Criteria
 This project addresses:

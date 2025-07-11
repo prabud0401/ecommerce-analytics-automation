@@ -10,3 +10,4 @@ dash
 wordcloud
 reportlab
 webdriver-manager
+Flask
