@@ -16,6 +16,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import config
 import analysis 
+import notifications # Import the new notifications module
 
 # --- Basic Logging Setup ---
 logging.basicConfig(
@@ -186,13 +187,15 @@ def scrape_brand_data(brand):
     except Exception as e:
         logging.error(f"An error occurred in the thread for brand '{brand}': {e}")
     finally:
-        driver.quit()
+        if driver:
+            driver.quit()
         logging.info(f"Thread for brand '{brand}' finished and WebDriver closed.")
     
     return brand_products
 
 def main():
     """Main function to orchestrate the automation using caching and a thread pool."""
+    start_time = time.time()
     all_products = []
     brands_to_scrape = []
 
@@ -236,6 +239,18 @@ def main():
 
     # --- Analysis Phase ---
     analysis.run_analysis()
+
+    # --- Email Notification ---
+    end_time = time.time()
+    duration = end_time - start_time
+    email_subject = "E-Commerce Scraping and Analysis Complete"
+    email_body = (
+        f"The automation script has finished.\n\n"
+        f"Total products processed: {len(all_products)}\n"
+        f"Total execution time: {duration:.2f} seconds.\n\n"
+        f"Reports have been generated in the '{config.REPORTS_DIR}' directory."
+    )
+    notifications.send_notification_email(email_subject, email_body)
 
 
 if __name__ == "__main__":
