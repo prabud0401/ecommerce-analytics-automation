@@ -1,7 +1,6 @@
 # analysis.py
 
 import os
-import glob
 import json
 import logging
 import pandas as pd
@@ -19,22 +18,16 @@ import plotly.io as pio
 import config
 
 def load_all_scraped_data():
-    """Loads and combines all brand-specific JSON files from the data directory."""
-    json_pattern = os.path.join(config.DATA_DIR, '*.json')
-    file_list = glob.glob(json_pattern)
-    
-    if not file_list:
-        logging.warning("No JSON data files found in the data directory. Analysis cannot proceed.")
+    """Loads the consolidated JSON data file."""
+    if not os.path.exists(config.OUTPUT_FILE_PATH):
+        logging.warning(f"Data file not found at {config.OUTPUT_FILE_PATH}. Analysis cannot proceed.")
         return None
         
-    all_data = []
-    for file in file_list:
-        with open(file, 'r') as f:
-            data = json.load(f)
-            all_data.extend(data)
+    with open(config.OUTPUT_FILE_PATH, 'r') as f:
+        data = json.load(f)
     
-    logging.info(f"Loaded data from {len(file_list)} files, containing {len(all_data)} total products.")
-    return pd.DataFrame(all_data)
+    logging.info(f"Loaded {len(data)} total products from {config.OUTPUT_FILE_PATH}.")
+    return pd.DataFrame(data)
 
 def clean_data(df):
     """Cleans and preprocesses the DataFrame."""

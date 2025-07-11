@@ -12,7 +12,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import config
-import analysis # Import the new analysis file
+import analysis 
 
 # --- Basic Logging Setup ---
 logging.basicConfig(
@@ -63,8 +63,7 @@ def navigate_and_search(driver):
         logging.info("Product listings page loaded successfully.")
         return True
     except Exception as e:
-        driver.save_screenshot(config.SCREENSHOT_PATH)
-        logging.error(f"Error in navigation/search. Screenshot saved. Error: {e}")
+        logging.error(f"Error in navigation/search: {e}")
         return False
 
 def apply_filters(driver, brand_to_filter):
@@ -93,30 +92,22 @@ def apply_filters(driver, brand_to_filter):
         logging.info("Page refreshed after rating filter.")
 
         logging.info("All filters applied successfully for this brand.")
-        screenshot_path = f"{config.LOGS_DIR}/filtered_view_{brand_to_filter}.png"
-        driver.save_screenshot(screenshot_path)
-        logging.info(f"Saved filtered view for {brand_to_filter}.")
-        
         return True
     except Exception as e:
-        driver.save_screenshot(config.SCREENSHOT_PATH)
-        logging.error(f"Error applying filters for {brand_to_filter}. Screenshot saved. Error: {e}")
+        logging.error(f"Error applying filters for {brand_to_filter}: {e}")
         return False
 
-def extract_product_data(driver, brand):
-    """Extracts data by scrolling to each card and waiting for its content to load."""
+def extract_product_data(driver, brand, all_products_list):
+    """Extracts data and appends it to a master list."""
     logging.info(f"Extracting data for {brand}.")
-    products = []
-    
     time.sleep(2)
     
     product_cards = driver.find_elements(By.CLASS_NAME, "product-list-item")
     logging.info(f"Found {len(product_cards)} potential product cards for {brand}.")
 
     for card in product_cards:
-        # Scroll the card into view to trigger lazy loading
         driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", card)
-        time.sleep(0.5) 
+        time.sleep(0.5)
 
         try:
             title_element = WebDriverWait(card, 5).until(EC.presence_of_element_located((By.CLASS_NAME, "product-title")))
@@ -151,32 +142,49 @@ def extract_product_data(driver, brand):
             "rating": rating,
             "review_count": review_count
         }
-        products.append(product_info)
+        all_products_list.append(product_info)
         logging.info(f"Extracted: {title} | Rating: {rating} | Reviews: {review_count}")
-
-    output_path = f"{config.DATA_DIR}/{brand.lower()}_laptops.json"
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(products, f, indent=4)
-    logging.info(f"Successfully saved {len(products)} products to {output_path}")
-
 
 def main():
     """Main function to orchestrate the automation for each brand."""
-    # --- Scraping Phase ---
-    for brand in config.FILTER_BRANDS:
-        logging.info(f"--- Starting scraping process for brand: {brand} ---")
-        driver = initialize_driver()
-        if driver:
-            try:
-                if navigate_and_search(driver):
-                    if apply_filters(driver, brand):
-                        extract_product_data(driver, brand)
-            finally:
-                logging.info(f"--- Finished scraping process for brand: {brand} ---")
-                driver.quit()
+    all_products = []
+    driver = initialize_driver()
+
+    if driver:
+        try:
+            # --- Scraping Phase ---
+            # Navigate to the initial search page once
+            if not navigate_and_search(driver):
+                logging.error("Failed to navigate to initial search page. Aborting.")
+                return
+
+            for brand in config.FILTER_BRANDS:
+                logging.info(f"--- Starting scraping process for brand: {brand} ---")
+                
+                # Apply filters for the current brand
+                if apply_filters(driver, brand):
+                    extract_product_data(driver, brand, all_products)
+                else:
+                    logging.error(f"Could not apply filters for brand {brand}. Skipping.")
+                
+                # Go back to the unfiltered search results page for the next brand
+                logging.info(f"Resetting for next brand...")
+                driver.get("https://www.bestbuy.com/site/searchpage.jsp?st=Laptops")
+                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "product-list-item")))
+
+        finally:
+            logging.info("--- Finished all scraping. Closing WebDriver. ---")
+            driver.quit()
     
+    # --- Save Consolidated Data ---
+    if all_products:
+        with open(config.OUTPUT_FILE_PATH, "w", encoding="utf-8") as f:
+            json.dump(all_products, f, indent=4)
+        logging.info(f"Successfully saved a total of {len(all_products)} products to {config.OUTPUT_FILE_PATH}")
+    else:
+        logging.warning("No products were scraped. Skipping data save.")
+
     # --- Analysis Phase ---
-    # After all scraping is done, run the analysis.
     analysis.run_analysis()
 
 

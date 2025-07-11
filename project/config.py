@@ -4,7 +4,7 @@
 BASE_URL = "https://www.bestbuy.com"
 CATEGORY = "Laptops"
 
-# --- Filter Parameters ---
+# --- Filter Parameters [cite: BlueOceanSP - Web-Automation-Case-Study (1).md] ---
 # The script will loop through each of these brands one by one.
 FILTER_BRANDS = ["HP", "Dell", "Apple"] 
 FILTER_PRICE_MIN = "500"
@@ -14,9 +14,9 @@ FILTER_RATING_ID = "customer-rating-4_&_Up"
 # --- File Paths ---
 LOGS_DIR = "project/logs"
 DATA_DIR = "project/data"
-REPORTS_DIR = "project/reports" 
-SCREENSHOT_PATH = f"{LOGS_DIR}/error_screenshot.png"
-# Success screenshots are now saved per brand in the apply_filters function
+REPORTS_DIR = "project/reports"
+# Consolidated output file path
+OUTPUT_FILE_PATH = f"{DATA_DIR}/all_laptops.json"
 
 # --- WebDriver Settings ---
 # Set to False to see the browser in action for debugging
