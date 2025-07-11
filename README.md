@@ -86,14 +86,13 @@ This project automates the collection, processing, and analysis of product data 
 - **Dependencies**: Verify Python 3.11 and re-run `pip install -r requirements.txt`.
 
 ## Future Enhancements
-1. Add email notification system for long-running processes
 2. Create a simple REST API to query the collected data
-3. Implement caching mechanism for improved performance
-4. Add support for multiple e-commerce platforms
+3. Add support for multiple e-commerce platforms
 
 ### Completed Bonus Challenges
-1. Implemented multi-threading for faster data collection
-
+1. Implemented email notification system for long-running processes
+2. Implemented multi-threading for faster data collection
+3. Implemented caching mechanism for improved performance
 
 ## Evaluation Criteria
 This project addresses:
