@@ -1,10 +1,178 @@
 [
     {
+        "brand": "HP",
+        "title": "HP - OmniBook X Flip 2 - in - 1 - Copilot+ PC - 14\" 2K Touch - Screen Laptop - AMD Ryzen AI 5 - 16GB Memory - 512GB SSD - Meteor Silver",
+        "price": "$549.99",
+        "rating": "4.7",
+        "review_count": "63"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 15.6\" Full HD Touch - Screen Laptop - Intel Core i7 - 16GB Memory - 512GB SSD - Natural Silver",
+        "price": "$529.99",
+        "rating": "4.6",
+        "review_count": "498"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 17.3\" Full HD Laptop - AMD Ryzen 5 - 8GB Memory - 512GB SSD - Natural Silver",
+        "price": "$329.99",
+        "rating": "4.6",
+        "review_count": "259"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook X Flip 2 - in - 1 - Copilot+ PC - 14\" 2K Touch - Screen Laptop - AMD Ryzen AI 7 - 24GB Memory - 1TB SSD - Meteor Silver",
+        "price": "$699.99",
+        "rating": "4.6",
+        "review_count": "51"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 15.6\" Touch - Screen Laptop - Intel Core i3 - 8GB Memory - 256GB SSD - Natural Silver",
+        "price": "$279.99",
+        "rating": "4.7",
+        "review_count": "252"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook X Flip 2 - in - 1 - Copilot+ PC - 14\" 2K Touch - Screen Laptop - AMD Ryzen AI 5 - 16GB Memory - 512GB SSD - Meteor Silver",
+        "price": "$549.99",
+        "rating": "4.7",
+        "review_count": "63"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - Victus 15.6\" 144Hz Full HD Gaming Laptop - Intel Core i5 - 8GB Memory - NVIDIA GeForce RTX 3050 - 512GB SSD - Mica Silver",
+        "price": "$779.99",
+        "rating": "4.6",
+        "review_count": "61"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook X Flip 2 - in - 1 - Copilot+ PC - 14\" 2K Touch - Screen Laptop - AMD Ryzen AI 7 - 24GB Memory - 1TB SSD - Meteor Silver",
+        "price": "$699.99",
+        "rating": "4.6",
+        "review_count": "51"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - Envy 2 - in - 1 14\" Full HD Touch - Screen Laptop - Intel Core 7 - 16GB Memory - 512GB SSD - Natural Silver",
+        "price": "$599.99",
+        "rating": "4.6",
+        "review_count": "650"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook X Flip 2 - in - 1 - Copilot+ PC - 16\" 2K Touch - Screen Laptop - Intel Core Ultra 5 - 16GB Memory - 512GB SSD - Eclipse Gray",
+        "price": "$649.99",
+        "rating": "4.9",
+        "review_count": "43"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 14\" Laptop - Intel Processor N150 - 4GB Memory - 128GB UFS - Sky Blue",
+        "price": "$149.99",
+        "rating": "4.5",
+        "review_count": "310"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - Envy 2 - in - 1 14\" 2K Touch - Screen Laptop - Intel Core Ultra 7 - 32GB Memory - 1TB SSD - Meteor Silver",
+        "price": "$864.99",
+        "rating": "4.6",
+        "review_count": "175"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook 5 Flip 2 - in - 1 14\" 2K Touch - Screen Laptop - Intel Core 7 - 16GB Memory - 512GB SSD - Glacier Silver",
+        "price": "$799.99",
+        "rating": "4.8",
+        "review_count": "38"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook X Flip 2 - in - 1 - Copilot+ PC - 16\" 2K Touch - Screen Laptop - Intel Core Ultra 7 - 32GB Memory - 2TB SSD - Eclipse Gray",
+        "price": "$1,049.99",
+        "rating": "4.9",
+        "review_count": "30"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook X Flip 2 - in - 1 - Copilot+ PC - 16\" 2K Touch - Screen Laptop - Intel Core Ultra 7 - 16GB Memory - 1TB SSD - Eclipse Gray",
+        "price": "$1,099.99",
+        "rating": "4.8",
+        "review_count": "164"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook Ultra Flip 2 - in - 1 - Copilot+ PC - 14\" 3K OLED Touch - Screen Laptop - Intel Core Ultra 9 - 32G Memory - 2TB SSD - Eclipse Gray",
+        "price": "$1,499.99",
+        "rating": "4.4",
+        "review_count": "24"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 15.6\" Touch - Screen Laptop - AMD Ryzen 5 - 16GB Memory - 256GB SSD - Natural Silver",
+        "price": "$349.99",
+        "rating": "4.8",
+        "review_count": "174"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - Victus 15.6\" 144Hz Full HD Gaming Laptop - Intel Core i5 - 8GB Memory - NVIDIA GeForce RTX 3050 - 512GB SSD - Mica Silver",
+        "price": "$779.99",
+        "rating": "4.6",
+        "review_count": "61"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 14\" Laptop - Intel Celeron - 4GB Memory - 64GB eMMC - Snowflake White",
+        "price": "$199.99",
+        "rating": "4.2",
+        "review_count": "179"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - OmniBook 5 Flip 2 - in - 1 14\" 2K Touch - Screen Laptop - Intel Core 7 - 16GB Memory - 512GB SSD - Glacier Silver",
+        "price": "$799.99",
+        "rating": "4.8",
+        "review_count": "38"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 17.3\" HD+ Laptop - Intel Core i3 - 8GB Memory - 256GB SSD - Natural Silver",
+        "price": "$579.99",
+        "rating": "4.6",
+        "review_count": "108"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 14\" Chromebook - Intel Celeron - 4GB Memory - 64GB eMMC - Modern Grey",
+        "price": "$129.00",
+        "rating": "4.4",
+        "review_count": "309"
+    },
+    {
+        "brand": "HP",
+        "title": "HP - 15.6\" Chromebook Laptop - Intel Processor N200 - 8GB Memory - 64GB eMMC - Natural Silver",
+        "price": "$179.00",
+        "rating": "4.5",
+        "review_count": "1369"
+    },
+    {
         "brand": "Dell",
         "title": "Dell - Latitude 3000 15.6\" Laptop - Intel Core i7 with 16GB Memory - 512 GB SSD - Soft Charcoal, Other",
         "price": "$1,249.99",
         "rating": "5",
         "review_count": "2"
+    },
+    {
+        "brand": "Dell",
+        "title": "Dell - Inspiron 15\" Touch Screen Laptop - Intel Core i5 with 8GB Memory - 512GB SSD - Black",
+        "price": "$349.99",
+        "rating": "4.7",
+        "review_count": "131"
     },
     {
         "brand": "Dell",
@@ -15,13 +183,6 @@
     },
     {
         "brand": "Dell",
-        "title": "Dell - Inspiron 15\" Touch Screen Laptop - Intel Core i7 with 16GB Memory - 1TB SSD - Black",
-        "price": "$799.99",
-        "rating": "4.6",
-        "review_count": "97"
-    },
-    {
-        "brand": "Dell",
         "title": "Dell - XPS 16 16.3\u201d 120Hz Laptop 2K - Intel Core Ultra 7 Series 1 with 16GB Memory \u2013 NVIDIA GeForce RTX 4050 - 1TB SSD - Platinum",
         "price": "$1,399.99",
         "rating": "4.4",
@@ -29,10 +190,24 @@
     },
     {
         "brand": "Dell",
+        "title": "Dell - Inspiron 15\" Touch Screen Laptop - Intel Core i7 with 16GB Memory - 1TB SSD - Black",
+        "price": "$799.99",
+        "rating": "4.6",
+        "review_count": "98"
+    },
+    {
+        "brand": "Dell",
         "title": "Dell - Plus 2 - in - 1 16\" FHD+ Touch Screen Laptop - Intel Core Ultra 7 Copilot+ PC with 16GB Memory - 1TB SSD - Ice",
         "price": "$1,099.99",
         "rating": "4.7",
-        "review_count": "104"
+        "review_count": "105"
+    },
+    {
+        "brand": "Dell",
+        "title": "Dell - XPS 16\" OLED Touch - Screen Laptop 4K - Intel Core Ultra 9 Series 1 with 32GB Memory - NVIDIA GeForce RTX 4060 - 1TB SSD - Platinum",
+        "price": "$3,049.99",
+        "rating": "4.3",
+        "review_count": "80"
     },
     {
         "brand": "Dell",
@@ -43,17 +218,17 @@
     },
     {
         "brand": "Dell",
-        "title": "Dell - XPS 13.4\" OLED 3K Touch - Screen Laptop - Snapdragon X Elite Copilot+ PC with 16GB Memory - 512GB SSD - Graphite",
-        "price": "$999.99",
-        "rating": "4.4",
-        "review_count": "161"
-    },
-    {
-        "brand": "Dell",
         "title": "Dell - Plus 2 - in - 1 14\" FHD+ Touch Screen Laptop - Intel Core Ultra 7 Copilot+ PC with 16GB Memory - 1TB SSD - Ice",
         "price": "$799.99",
         "rating": "4.7",
-        "review_count": "86"
+        "review_count": "87"
+    },
+    {
+        "brand": "Dell",
+        "title": "Dell - Plus 2 - In - 1 16\" Mini - LED Touch Screen Laptop - Intel Core Ultra 9 Copilot+ PC with 32GB Memory - 1TB SSD - Midnight",
+        "price": "$1,599.99",
+        "rating": "4.6",
+        "review_count": "21"
     },
     {
         "brand": "Dell",
@@ -61,6 +236,13 @@
         "price": "$799.99",
         "rating": "4.8",
         "review_count": "23"
+    },
+    {
+        "brand": "Dell",
+        "title": "Dell - XPS 13.4\" OLED 3K Touch - Screen Laptop - Snapdragon X Elite Copilot+ PC with 16GB Memory - 512GB SSD - Graphite",
+        "price": "$999.99",
+        "rating": "4.4",
+        "review_count": "161"
     },
     {
         "brand": "Dell",
@@ -82,13 +264,6 @@
         "price": "$833.99",
         "rating": "4.6",
         "review_count": "236"
-    },
-    {
-        "brand": "Dell",
-        "title": "Dell - Inspiron 14 Plus 14\" QHD Touch Screen Laptop - Snapdragon X Plus Copilot+ PC with 16GB Memory - 512GB SSD - Ice Blue",
-        "price": "$999.99",
-        "rating": "4.5",
-        "review_count": "124"
     },
     {
         "brand": "Dell",
@@ -134,149 +309,9 @@
     },
     {
         "brand": "Dell",
-        "title": "Dell - Plus 2 - In - 1 16\" FHD+ Laptop - Intel Core Ultra 5 Copilot+ PC with 16GB Memory - 512GB SSD - Ice",
-        "price": "$649.99",
-        "rating": "5",
-        "review_count": "2"
-    },
-    {
-        "brand": "Dell",
-        "title": "Dell - Precision 3000 14\" Laptop - Intel Core Ultra 5 with 16GB Memory - 256 GB SSD - Gray",
-        "price": "$1,399.99",
-        "rating": "5",
-        "review_count": "1"
-    },
-    {
-        "brand": "Dell",
-        "title": "Dell - Inspiron 14 2 - in - 1 14\" Touch Screen Laptop - Intel Core 5 with 16GB Memory - 512GB SSD - Ice Blue",
-        "price": "$749.99",
-        "rating": "4.9",
-        "review_count": "12"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - Apple M2 chip Built for Apple Intelligence - 16GB Memory - 256GB SSD - Midnight",
-        "price": "$699.00",
-        "rating": "4.9",
-        "review_count": "1637"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - Apple M4 chip Built for Apple Intelligence - 16GB Memory - 256GB SSD - Midnight",
-        "price": "$849.00",
-        "rating": "4.9",
-        "review_count": "1353"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 15 - inch Laptop - Apple M4 chip Built for Apple Intelligence - 16GB Memory - 256GB SSD - Midnight",
-        "price": "$1,049.00",
-        "rating": "4.9",
-        "review_count": "501"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Pro 14 - inch Laptop - Apple M4 chip Built for Apple Intelligence - 16GB Memory - 512GB SSD - Space Black",
-        "price": "$1,429.00",
-        "rating": "4.9",
-        "review_count": "1098"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 15 - inch Laptop - Apple M3 chip Built for Apple Intelligence - 16GB Memory - 256GB SSD - Starlight",
-        "price": "$899.00",
-        "rating": "4.8",
-        "review_count": "588"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - M3 chip Built for Apple Intelligence - 16GB Memory - 512GB SSD - Midnight",
-        "price": "$869.99",
-        "rating": "4.9",
-        "review_count": "1302"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - Apple M3 chip Built for Apple Intelligence - 16GB Memory - 256GB SSD - Silver",
-        "price": "$787.99",
-        "rating": "4.9",
-        "review_count": "1455"
-    },
-    {
-        "brand": "Apple",
-        "title": "Geek Squad Certified Refurbished MacBook Air 13.6\" Laptop - Apple M2 chip - 8GB Memory - 256GB SSD - Midnight",
-        "price": "$599.99",
-        "rating": "4.6",
-        "review_count": "172"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Pro 14\" Laptop - M3 Pro chip Built for Apple Intelligence - 18GB Memory - 14 - core GPU - 512GB SSD - Space Black",
-        "price": "$1,286.99",
-        "rating": "4.9",
-        "review_count": "3189"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - Apple M4 chip Built for Apple Intelligence - 16GB Memory - 512GB SSD - Midnight",
-        "price": "$1,049.00",
-        "rating": "4.9",
-        "review_count": "390"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 15 - inch Laptop - Apple M4 chip Built for Apple Intelligence - 16GB Memory - 512GB SSD - Midnight",
-        "price": "$1,249.00",
-        "rating": "4.9",
-        "review_count": "214"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 15 - inch Laptop - Apple M4 chip Built for Apple Intelligence - 24GB Memory - 512GB SSD - Midnight",
-        "price": "$1,449.00",
-        "rating": "5",
-        "review_count": "151"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - Apple M4 chip Built for Apple Intelligence - 24GB Memory - 512GB SSD - Midnight",
-        "price": "$1,249.00",
-        "rating": "4.9",
-        "review_count": "156"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Pro 14\" Laptop - M3 chip Built for Apple Intelligence - 8GB Memory - 10 - core GPU - 1TB SSD - Space Gray",
-        "price": "$1,161.99",
-        "rating": "4.8",
-        "review_count": "252"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 15 - inch Laptop - M3 chip Built for Apple Intelligence - 16GB Memory - 512GB SSD - Midnight",
-        "price": "$1,099.00",
-        "rating": "4.9",
-        "review_count": "863"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - M3 chip Built for Apple Intelligence - 8GB Memory - 256GB SSD - Midnight",
-        "price": "$849.00",
-        "rating": "4.9",
-        "review_count": "2217"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 15 - inch Laptop - M3 chip Built for Apple Intelligence - 8GB Memory - 256GB SSD - Midnight",
-        "price": "$813.99",
-        "rating": "4.9",
-        "review_count": "877"
-    },
-    {
-        "brand": "Apple",
-        "title": "Apple - MacBook Air 13 - inch Laptop - Apple M3 chip Built for Apple Intelligence - 24GB Memory - 512GB SSD - Midnight",
-        "price": "$1,033.99",
-        "rating": "4.9",
-        "review_count": "125"
+        "title": "Dell - XPS 14 14.5\" OLED 3.2K Touch - Screen Laptop \u2013 Intel Core Ultra 7 with 32GB Memory - 1TB SSD - Platinum",
+        "price": "$2,099.99",
+        "rating": "4.4",
+        "review_count": "84"
     }
 ]

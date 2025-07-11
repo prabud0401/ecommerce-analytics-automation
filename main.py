@@ -4,6 +4,7 @@ import logging
 import time
 import json
 import re
+import concurrent.futures
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
@@ -17,7 +18,7 @@ import analysis
 # --- Basic Logging Setup ---
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
+    format='%(asctime)s - %(threadName)s - %(levelname)s - %(message)s',
     handlers=[
         logging.FileHandler(f"{config.LOGS_DIR}/automation.log"),
         logging.StreamHandler()
@@ -91,29 +92,16 @@ def apply_filters(driver, brand_to_filter):
         WebDriverWait(driver, 15).until(EC.staleness_of(product_list_container))
         logging.info("Page refreshed after rating filter.")
 
-        # --- NEW: Apply Price Filter ---
-        product_list_container = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "plp-product-list")))
-        min_price_input = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[placeholder='Min Price']")))
-        max_price_input = driver.find_element(By.CSS_SELECTOR, "input[placeholder='Max Price']")
-        set_button = driver.find_element(By.CSS_SELECTOR, "button.current-price-facet-set-button")
-
-        driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", min_price_input)
-        min_price_input.send_keys(config.FILTER_PRICE_MIN)
-        max_price_input.send_keys(config.FILTER_PRICE_MAX)
-        set_button.click()
-        logging.info(f"Applied price filter: ${config.FILTER_PRICE_MIN}-${config.FILTER_PRICE_MAX}")
-        WebDriverWait(driver, 15).until(EC.staleness_of(product_list_container))
-        logging.info("Page refreshed after price filter.")
-
         logging.info("All filters applied successfully for this brand.")
         return True
     except Exception as e:
         logging.error(f"Error applying filters for {brand_to_filter}: {e}")
         return False
 
-def extract_product_data(driver, brand, all_products_list):
-    """Extracts data and appends it to a master list."""
+def extract_product_data_for_thread(driver, brand):
+    """Extracts data for a brand and returns it as a list."""
     logging.info(f"Extracting data for {brand}.")
+    products = []
     time.sleep(2)
     
     product_cards = driver.find_elements(By.CLASS_NAME, "product-list-item")
@@ -156,46 +144,59 @@ def extract_product_data(driver, brand, all_products_list):
             "rating": rating,
             "review_count": review_count
         }
-        all_products_list.append(product_info)
-        logging.info(f"Extracted: {title} | Rating: {rating} | Reviews: {review_count}")
+        products.append(product_info)
+    
+    return products
+
+def scrape_brand_data(brand):
+    """
+    A complete scraping pipeline for a single brand, designed to be run in a thread.
+    Initializes a driver, scrapes data, and closes the driver.
+    """
+    logging.info(f"Thread for brand '{brand}' started.")
+    driver = initialize_driver()
+    if not driver:
+        return []
+
+    brand_products = []
+    try:
+        if navigate_and_search(driver):
+            if apply_filters(driver, brand):
+                brand_products = extract_product_data_for_thread(driver, brand)
+    except Exception as e:
+        logging.error(f"An error occurred in the thread for brand '{brand}': {e}")
+    finally:
+        driver.quit()
+        logging.info(f"Thread for brand '{brand}' finished and WebDriver closed.")
+    
+    return brand_products
 
 def main():
-    """Main function to orchestrate the automation for each brand."""
+    """Main function to orchestrate the automation using a thread pool."""
     all_products = []
-    driver = initialize_driver()
-
-    if driver:
-        try:
-            # --- Scraping Phase ---
-            if not navigate_and_search(driver):
-                logging.error("Failed to navigate to initial search page. Aborting.")
-                return
-
-            for brand in config.FILTER_BRANDS:
-                logging.info(f"--- Starting scraping process for brand: {brand} ---")
-                
-                # Apply filters for the current brand
-                if apply_filters(driver, brand):
-                    extract_product_data(driver, brand, all_products)
-                else:
-                    logging.error(f"Could not apply filters for brand {brand}. Skipping.")
-                
-                # Go back to the unfiltered search results page for the next brand
-                logging.info(f"Resetting for next brand...")
-                driver.get("https://www.bestbuy.com/site/searchpage.jsp?st=Laptops")
-                WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "product-list-item")))
-
-        finally:
-            logging.info("--- Finished all scraping. Closing WebDriver. ---")
-            driver.quit()
     
+    # Use a ThreadPoolExecutor to run scraping for each brand in parallel
+    with concurrent.futures.ThreadPoolExecutor(max_workers=len(config.FILTER_BRANDS)) as executor:
+        # Map the scrape_brand_data function to each brand in the config
+        future_to_brand = {executor.submit(scrape_brand_data, brand): brand for brand in config.FILTER_BRANDS}
+        
+        for future in concurrent.futures.as_completed(future_to_brand):
+            brand = future_to_brand[future]
+            try:
+                data = future.result()
+                if data:
+                    all_products.extend(data)
+                    logging.info(f"Successfully collected {len(data)} products for brand '{brand}'.")
+            except Exception as exc:
+                logging.error(f"Brand '{brand}' generated an exception: {exc}")
+
     # --- Save Consolidated Data ---
     if all_products:
         with open(config.OUTPUT_FILE_PATH, "w", encoding="utf-8") as f:
             json.dump(all_products, f, indent=4)
         logging.info(f"Successfully saved a total of {len(all_products)} products to {config.OUTPUT_FILE_PATH}")
     else:
-        logging.warning("No products were scraped. Skipping data save.")
+        logging.warning("No products were scraped across all brands.")
 
     # --- Analysis Phase ---
     analysis.run_analysis()
